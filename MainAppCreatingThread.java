@@ -22,12 +22,19 @@ public class MainAppCreatingThread {
 		
 		Thread1 vjs=new Thread1();
 		Thread vj=new Thread(vjs);
+		
 		vj.setName("First");
+		System.out.println("Is First Is Alive="+vj.isAlive());
 		vj.start();
+		System.out.println("Is First Is Alive="+vj.isAlive());
 		vj.join();
+		System.out.println("Is First Is Alive="+vj.isAlive());
 		Thread vj1=new Thread(vjs);
+		System.out.println("Is Second Is Alive="+vj1.isAlive());
 		vj1.setName("Second");
-		vj1.start();
+		System.out.println("Is Second Is Alive="+vj1.isAlive());
+	    vj1.start();
+		System.out.println("Is Second Is Alive="+vj1.isAlive());
 		
 	}
 
