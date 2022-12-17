@@ -1,61 +1,56 @@
 package com.edu;
 
+@FunctionalInterface
+interface Addition{
+	void add(int a,int b);
+}
+@FunctionalInterface
+interface Multiplication{
+	int product(int a,int b);
+}
+@FunctionalInterface
+interface Subraction{
+	int sub(int a,int b);
+}
+@FunctionalInterface
+interface Divition{
+	int div(int a,int b);
+}
 
 
-import java.util.Iterator;
-import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-;
 
 public class MainApp {
 
 	public static void main(String[] args) {
-		Configuration con=new Configuration();
-		con.configure("hibernate.cfg.xml");
-		
-		con.addAnnotatedClass(Employee.class);
-		
-					SessionFactory sessionFactory= con.buildSessionFactory();
-		
-					Session session=sessionFactory.openSession();
+		 Addition ps=(int a,int b)->{
+			 int s=a+b;
+			 System.out.println("Sum = "+s);
+		 };
+		 ps.add(8, 9);
+		 
+		 Multiplication vj=(a,b)->(a*b);
+			 int ans;
+			 ans =vj.product(3, 9);
+			System.out.println("Product = "+ans); 
+		 
+			 Subraction psp=(a,b)->(a-b);
+			 int an;
+			 an=psp.sub(6,4);
+			 System.out.println("Subraction = "+an);
+			 
+			 Divition npps=(a,b)->(a/b);
+			 int c;
+			 c=npps.div(10, 2);
+			 System.out.println("Divition = "+c);
+			 
 	
-				Transaction transaction= session.beginTransaction();
-				
-				/*Employee ne=new Employee();
-				
-				//ne.setEmployeeName("gibbs");
-				//ne.setEmployeeSalary(19599f);
-				//ne.setEmployeeEmail("gibbs@gmail.com");
-				//ne.setEmployeePhone(9710173838l);
-				
-				Employee va=new Employee("Sivaji A",45000f,"sivaji304@gmail.com",1237654987l);
-				
-				
-				session.save(va);
-				
-				session.delete(va);
-				System.out.println("Employee"+va);
-				Employee e=session.get(Employee.class,2);
-				System.out.println(e);
-				//transaction.commit();*/
-				
-				Query query=session.createQuery("from Employee");
-				List<Employee>lit=query.list();
-				
-				Iterator<Employee> it=lit.iterator();
-				
-				System.out.println("E_Id\tE_Name\tE_Phone\tE_Email\tE_Salary");
-				while(it.hasNext()) {
-					Employee e=it.next();
-					System.out.println(e.getEmployeeid()+"\t"+e.getEmployeeName()+"\t"+e.getEmployeePhone()+"\t"+e.getEmployeeEmail()+"\t"+e.getEmployeeSalary());
-				}
-				
+		 
+		 Runnable np=()->{
+			 System.out.println("The Run Method Is Called");
+		 };
+		 Thread vjs=new Thread(np);
+		 vjs.start();
+
 	}
-	
 
 }
