@@ -1,56 +1,37 @@
 package com.edu;
 
-@FunctionalInterface
-interface Addition{
-	void add(int a,int b);
-}
-@FunctionalInterface
-interface Multiplication{
-	int product(int a,int b);
-}
-@FunctionalInterface
-interface Subraction{
-	int sub(int a,int b);
-}
-@FunctionalInterface
-interface Divition{
-	int div(int a,int b);
-}
-
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 public class MainApp {
 
 	public static void main(String[] args) {
-		 Addition ps=(int a,int b)->{
-			 int s=a+b;
-			 System.out.println("Sum = "+s);
-		 };
-		 ps.add(8, 9);
-		 
-		 Multiplication vj=(a,b)->(a*b);
-			 int ans;
-			 ans =vj.product(3, 9);
-			System.out.println("Product = "+ans); 
-		 
-			 Subraction psp=(a,b)->(a-b);
-			 int an;
-			 an=psp.sub(6,4);
-			 System.out.println("Subraction = "+an);
-			 
-			 Divition npps=(a,b)->(a/b);
-			 int c;
-			 c=npps.div(10, 2);
-			 System.out.println("Divition = "+c);
-			 
-	
-		 
-		 Runnable np=()->{
-			 System.out.println("The Run Method Is Called");
-		 };
-		 Thread vjs=new Thread(np);
-		 vjs.start();
-
+		Configuration conn=new Configuration();
+		conn.configure("myhibernate.cgf.xml");
+		
+		conn.addAnnotatedClass(Employee.class);
+		conn.addAnnotatedClass(Address.class);
+		
+		SessionFactory sessionFactory=conn.buildSessionFactory();
+		
+		Session session=sessionFactory.openSession();
+		
+		Transaction transaction=session.beginTransaction();
+		
+		Address aob=new Address();
+		aob.setAddreesCity("Chennai");
+		aob.setAddressStreet("Periyar St");
+		
+		Employee eob=new Employee();
+		eob.setEmployeeemail("admin123@gmail.com");
+		eob.setEmployeename("admin");
+		eob.setAddress(aob);
+		
+		session.save(eob);
+		transaction.commit();
+		session.close();
 	}
 
 }

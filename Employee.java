@@ -1,22 +1,17 @@
 package com.edu;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
-
-
-
 @Entity
-@Table(name="Employee_D")
+@Table(name="Employee_Table")
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,22 +19,22 @@ public class Employee {
 	private int employeeid;
 	@Column(name="Employee_Name")
 	private String employeename;
-	@Column(name="Employee_Phone")
-	private long employeephone;
+	@Column(name="E_Mail",length = 50,unique = false)
+	private String employeeemail;
 	
-	@ManyToOne
-	@JoinColumn(name="Department_Id")
-	Department department;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="addressid")
+	Address Address;
 	
 	public Employee() {
 		super();
 		
 	}
-	public Employee(int employeeid, String employeename, long employeephone) {
+	public Employee( String employeename, String employeeemail) {
 		super();
-		this.employeeid = employeeid;
+		
 		this.employeename = employeename;
-		this.employeephone = employeephone;
+		this.employeeemail = employeeemail;
 	}
 	public int getEmployeeid() {
 		return employeeid;
@@ -53,26 +48,26 @@ public class Employee {
 	public void setEmployeename(String employeename) {
 		this.employeename = employeename;
 	}
-	public long getEmployeephone() {
-		return employeephone;
+	public String getEmployeeemail() {
+		return employeeemail;
 	}
-	public void setEmployeephone(long employeephone) {
-		this.employeephone = employeephone;
+	public void setEmployeeemail(String employeeemail) {
+		this.employeeemail = employeeemail;
 	}
-	public Department getDepartment() {
-		return department;
+	
+	
+	public Address getAddress() {
+		return Address;
 	}
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setAddress(Address address) {
+		this.Address = address;
 	}
 	@Override
 	public String toString() {
-		return "Employee [employeeid=" + employeeid + ", employeename=" + employeename + ", employeephone="
-				+ employeephone + ", department=" + department + "]";
+		return "Empolyee [employeeid=" + employeeid + ", employeename=" + employeename + ", employeeemail="
+				+ employeeemail + "]";
 	}
 	
 	
 
-	
-	
 }
