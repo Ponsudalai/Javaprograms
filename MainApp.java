@@ -1,17 +1,17 @@
 package com.edu;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-@Configuration
-@ComponentScan(basePackages = {"com.edu"})
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class MainApp {
 
 	public static void main(String[] args) {
-		
-		AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(MainApp.class);
-		ServiceInterface np=(ServiceInterface) ctx.getBean("serviceClass");
-		np.Reverse(" PONSUDALAI");
+		// TODO Auto-generated method stub
+		ApplicationContext context=new ClassPathXmlApplicationContext("Context.xml.");
+		LifeCycle sp=(LifeCycle) context.getBean("lifecycle");
+		        System.out.println("Message from xml file "+sp.getMesg());
+		        ((AbstractApplicationContext) context).registerShutdownHook(); //destroy
+		}
 	}
 
-}
