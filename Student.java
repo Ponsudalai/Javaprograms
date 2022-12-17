@@ -1,15 +1,17 @@
 package com.edu;
 
 public class Student {
-	private static Student student=new Student();
+	private int studentid;
+	private String studentname;
+	public Student(int studentid, String studentname) {
+		super();
+		this.studentid = studentid;
+		this.studentname = studentname;
+	}
 	
-	private Student() {
-		
+	public void display() {
+		System.out.println("Student ID "+studentid);
+		System.out.println("Student Name "+studentname);
 	}
-	public static Student getStudentobject() {
-		return student;
-	}
-public void studentInfo() {
-	System.out.println("SUDALAI");
-}
+
 }
