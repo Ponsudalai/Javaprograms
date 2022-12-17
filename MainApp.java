@@ -7,8 +7,8 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("context.xml");
-		Student d=(Student) ctx.getBean("sob");
-		d.studentInfo();
+		Printable pob=(Printable) ctx.getBean("np");
+		pob.print();
 	}
 
 }
