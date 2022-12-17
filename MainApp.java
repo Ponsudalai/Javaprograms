@@ -7,9 +7,8 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("context.xml");
-		Texteditor tob=(Texteditor) ctx.getBean("textEditor");
-		tob.textEditor();
-
+		Student d=(Student) ctx.getBean("sob");
+		d.studentInfo();
 	}
 
 }

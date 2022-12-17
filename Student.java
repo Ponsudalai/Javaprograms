@@ -1,18 +1,15 @@
 package com.edu;
 
 public class Student {
-	private int age;
-	private String name;
-	public int getAge() {
-	return age;
+	private static Student student=new Student();
+	
+	private Student() {
+		
 	}
-	public void setAge(int age) {
-	this.age = age;
+	public static Student getStudentobject() {
+		return student;
 	}
-	public String getName() {
-	return name;
-	}
-	public void setName(String name) {
-	this.name = name;
-	}
+public void studentInfo() {
+	System.out.println("SUDALAI");
+}
 }
