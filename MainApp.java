@@ -1,16 +1,24 @@
 package com.edu;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
+@ComponentScan(basePackages = {"com.edu" })
 public class MainApp {
 
 	public static void main(String[] args) {
-		  ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+		  AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainApp.class);
 
-	      Profile profile = (Profile) context.getBean("profile");
-	      profile.printName();
-	      profile.printAge();
+          PrintService printService = (PrintService)ctx.getBean("printServiceImpl");
+
+          printService.printLowercase("Hello :)");
+
+          printService.printUppercase("Hello :)");
+
+  }
+
 	}
 
-}
+
