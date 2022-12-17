@@ -1,34 +1,31 @@
 package com.edu;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 public class MainAppStudent {
-	
-	int a,b;
-	
-	public void setData(int c,int d){
-		a=c;
-		b=d;
-		
-	}
-	public void showData() {
-		System.out.println( "The A Values Is = "+a );
-		System.out.println( "The B Values Is = "+b );
-	}
 
 	public static void main(String[] args) {
 		
-		MainAppStudent np=new MainAppStudent();
-		MainAppStudent ps=new MainAppStudent();
-	np.setData(1, 2);
-	ps.setData(3, 4);
-	np.showData();
-	
-	MainAppStudent s3;
-	s3=ps;
-	s3.showData();
-	ps=null;
-	ps.showData();
-	s3.showData();
-	
+		Configuration conn=new Configuration();
+		conn.configure("hibernate.cgf.xml");
+		
+		conn.addAnnotatedClass(Student.class);
+		
+		SessionFactory sessionFactory=conn.buildSessionFactory();
+		
+		Session session=sessionFactory.openSession();
+		
+		Transaction transaction=session.beginTransaction();
+		
+		Student ps=new Student();
+		ps.setSname("Jack");
+		ps.setSfees(30000f);
+		session.save(ps);
+		transaction.commit();
+		
 
 	}
 
